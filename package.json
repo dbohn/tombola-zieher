@@ -1,0 +1,17 @@
+{
+  "name": "Tombola Random Picker",
+  "version": "1.0.0",
+  "description": "This provides a simple application to pick random numbers via a external buzzer",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "serialport": "^2.0.5",
+    "socket.io": "^1.3.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Bohn",
+  "license": "MIT"
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Random Picker</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body id="app">
+	<div class="numberContainer">
+		<div class="number">
+			<h1 v-if="number > 0">{{ number }}</h1>
+		</div>
+		<div class="previous">
+			<h3>Letzte Zahlen:</h3>
+			<ul>
+				<li v-for="prev in pickedNumbers">{{ prev }}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="bottomRow">
+		<div class="portPicker">
+			<select name="port" id="port" v-model="selectedPort" @change="portChanged">
+				<option v-for="port in ports" v-bind:value="port">{{ port.comName }} ({{ port.manufacturer }})</option>
+			</select>
+		</div>
+		<div class="rangePicker">
+			<label for="start">Minimum: </label>
+			<input type="text" name="start" v-model="minNumber" number>
+			<label for="end">Maximum: </label>
+			<input type="text" name="end" v-model="maxNumber" numer>
+		</div>
+		<div class="stats">
+			<p>Noch {{ numbers.length }} Lose!</p>
+		</div>
+	</div>
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://raw.githubusercontent.com/simplefocus/FlowType.JS/master/flowtype.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="frontend.js"></script>
+</body>
+</html>

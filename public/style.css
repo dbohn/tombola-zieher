@@ -1,0 +1,46 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	font-family: 'Open Sans', sans-serif;
+	flex-direction: column;
+	align-content: stretch;
+}
+
+.numberContainer {
+	flex: 2;
+	display: flex;
+	justify-content: space-between;
+}
+
+.previous {
+	width: 10%;
+	overflow: scroll;
+	padding: 10px;
+}
+
+.previous ul {
+	margin-left: 20px;
+}
+
+.number {
+	width: 100%;
+	flex: 2;
+	background: #C0C0C0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bottomRow {
+	height: 30px;
+	width: 100%;
+	display: flex;
+}
