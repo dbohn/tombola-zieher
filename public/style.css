@@ -30,6 +30,10 @@ body {
 	margin-left: 20px;
 }
 
+.previous li {
+	font-size: 120%;
+}
+
 .number {
 	width: 100%;
 	flex: 2;

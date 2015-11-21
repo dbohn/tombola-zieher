@@ -27,7 +27,8 @@
 			<label for="start">Minimum: </label>
 			<input type="text" name="start" v-model="minNumber" number>
 			<label for="end">Maximum: </label>
-			<input type="text" name="end" v-model="maxNumber" numer>
+			<input type="text" name="end" v-model="maxNumber" number>
+			<button @click="resetList">Zurücksetzen</button>
 		</div>
 		<div class="stats">
 			<p>Noch {{ numbers.length }} Lose!</p>

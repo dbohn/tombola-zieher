@@ -9,7 +9,10 @@ var vm = new Vue({
 		minNumber: 80,
 		maxNumber: 120,
 		ports: [],
-		selectedPort: {}
+		selectedPort: {},
+		shuffling: false,
+		steps: 50,
+		i: 0
 	},
 	ready: function() {
 		$('.number').flowtype({
@@ -27,15 +30,32 @@ var vm = new Vue({
 			this.selectedPort = this.ports[0];
 			this.portChanged();
 		},
-		startShuffle: function() {
-			if (this.numbers.length > 0) {
+		shuffle: function(num) {
+			if (this.i < this.steps) {
 				var rand = Math.random();
-				var num = Math.floor(rand * this.numbers.length);
+				var number = Math.floor(rand * this.numbers.length);
+				this.number = this.numbers[number];
+				this.i++;
+				setTimeout(function() {this.shuffle(num)}.bind(this), 50);
+			} else {
 				this.number = this.numbers[num];
 				this.pickedNumbers.unshift(this.number);
 				this.numbers.splice(num, 1);
-				console.log(this.pickedNumbers);
-			} else {
+
+				this.shuffling = false;
+				this.i = 0;
+			}
+			
+		},
+		startShuffle: function() {
+			if (this.numbers.length > 0 && !this.shuffling) {
+				var rand = Math.random();
+				var num = Math.floor(rand * this.numbers.length);
+				
+				this.shuffling = true;
+				this.i = 0;
+				setTimeout(function() {this.shuffle(num)}.bind(this), 50);
+			} else if (this.numbers.length == 0) {
 				this.number = 0;
 			}
 		},
