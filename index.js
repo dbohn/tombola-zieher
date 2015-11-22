@@ -10,6 +10,7 @@ var io = require('socket.io')(http);
 var port = null;
 
 app.use(express.static('public'));
+app.use(express.static('audio'));
 
 app.get('/', function(req, res) {
 	res.sendFile('index.html', {

@@ -1,5 +1,23 @@
 var socket = io();
 
+var sound = null;
+var slowingIntervall = function(x) { return Math.floor(Math.sqrt(x+1)*x); };
+
+soundManager.setup({
+	preferFlash: false,
+	onready: function() {
+		sound = soundManager.createSound({
+			url: '/auswahlrunde_loop.wav',
+			autoLoad: true,
+			autoPlay: false,
+			loops: 100/*,
+			onload: function() {
+				sound.play();
+			}*/
+		});
+	}
+});
+
 var vm = new Vue({
 	el: '#app',
 	data: {
@@ -11,7 +29,7 @@ var vm = new Vue({
 		ports: [],
 		selectedPort: {},
 		shuffling: false,
-		steps: 50,
+		steps: 45,
 		i: 0
 	},
 	ready: function() {
@@ -36,8 +54,9 @@ var vm = new Vue({
 				var number = Math.floor(rand * this.numbers.length);
 				this.number = this.numbers[number];
 				this.i++;
-				setTimeout(function() {this.shuffle(num)}.bind(this), 50);
+				setTimeout(function() {this.shuffle(num)}.bind(this), slowingIntervall(this.i));
 			} else {
+				sound.stop();
 				this.number = this.numbers[num];
 				this.pickedNumbers.unshift(this.number);
 				this.numbers.splice(num, 1);
@@ -54,7 +73,8 @@ var vm = new Vue({
 				
 				this.shuffling = true;
 				this.i = 0;
-				setTimeout(function() {this.shuffle(num)}.bind(this), 50);
+				sound.play();
+				setTimeout(function() {this.shuffle(num)}.bind(this), slowingIntervall(this.i));
 			} else if (this.numbers.length == 0) {
 				this.number = 0;
 			}
