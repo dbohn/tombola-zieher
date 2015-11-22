@@ -1,6 +1,7 @@
 var socket = io();
 
 var sound = null;
+var signal = null;
 var slowingIntervall = function(x) { return Math.floor(Math.sqrt(x+1)*x); };
 
 soundManager.setup({
@@ -10,10 +11,17 @@ soundManager.setup({
 			url: '/auswahlrunde_loop.wav',
 			autoLoad: true,
 			autoPlay: false,
-			loops: 100/*,
+			loops: 100,
+			volume: 50/*,
 			onload: function() {
 				sound.play();
 			}*/
+		});
+		signal = soundManager.createSound({
+			url: '/finished.mp3',
+			autoLoad: true,
+			autoPlay: false,
+			volume: 100
 		});
 	}
 });
@@ -29,7 +37,7 @@ var vm = new Vue({
 		ports: [],
 		selectedPort: {},
 		shuffling: false,
-		steps: 45,
+		steps: 47,
 		i: 0
 	},
 	ready: function() {
@@ -56,6 +64,7 @@ var vm = new Vue({
 				this.i++;
 				setTimeout(function() {this.shuffle(num)}.bind(this), slowingIntervall(this.i));
 			} else {
+				signal.play();
 				sound.stop();
 				this.number = this.numbers[num];
 				this.pickedNumbers.unshift(this.number);
