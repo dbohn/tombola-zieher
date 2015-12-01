@@ -38,7 +38,8 @@ var vm = new Vue({
 		selectedPort: {},
 		shuffling: false,
 		steps: 47,
-		i: 0
+		i: 0,
+		showBottomBar: true
 	},
 	ready: function() {
 		$('.number').flowtype({

@@ -6,9 +6,16 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body id="app">
+	<div class="showBottomRowButton" v-show="!showBottomBar">
+		<p @click="showBottomBar = true">⇧</p>
+	</div>
 	<div class="numberContainer">
 		<div class="number">
 			<h1 v-if="number > 0">{{ number }}</h1>
+
+			<div id="snowflakeContainer">
+			    <p class="snowflake">*</p>
+			</div>
 		</div>
 		<div class="previous">
 			<h3>Letzte Zahlen:</h3>
@@ -17,7 +24,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="bottomRow">
+	<div class="bottomRow" v-show="showBottomBar">
 		<div class="portPicker">
 			<select name="port" id="port" v-model="selectedPort" @change="portChanged">
 				<option v-for="port in ports" v-bind:value="port">{{ port.comName }} ({{ port.manufacturer }})</option>
@@ -29,9 +36,13 @@
 			<label for="end">Maximum: </label>
 			<input type="text" name="end" v-model="maxNumber" number>
 			<button @click="resetList">Zurücksetzen</button>
+			<button @click="startShuffle">Shuffle</button>
 		</div>
 		<div class="stats">
 			<p>Noch {{ numbers.length }} Lose!</p>
+		</div>
+		<div class="close">
+			<p @click="showBottomBar = false">x</p>
 		</div>
 	</div>
 	<script src="jquery.min.js"></script>
@@ -39,6 +50,7 @@
 	<script src="vue.min.js"></script>
 	<script src="soundmanager2-nodebug-jsmin.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
+	<script src="fallingsnow_v6.js"></script>
 	<script src="frontend.js"></script>
 </body>
 </html>
