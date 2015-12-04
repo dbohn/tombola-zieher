@@ -1,5 +1,5 @@
 {
-  "name": "Tombola Random Picker",
+  "name": "Tombola",
   "version": "1.0.0",
   "description": "This provides a simple application to pick random numbers via a external buzzer",
   "main": "index.js",
