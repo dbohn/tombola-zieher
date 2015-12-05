@@ -5,7 +5,7 @@
 	<title>Tombola Loszieher</title>
 	<link rel="stylesheet" href="style.css">
 </head>
-<body id="app">
+<body id="app" @keyup.space="startShuffle">
 	<div class="showBottomRowButton" v-show="!showBottomBar">
 		<p @click="showBottomBar = true">⇧</p>
 	</div>
